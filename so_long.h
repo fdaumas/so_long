@@ -6,14 +6,14 @@
 /*   By: fdaumas <fdaumas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 16:30:37 by fdaumas           #+#    #+#             */
-/*   Updated: 2022/04/11 10:46:34 by fdaumas          ###   ########.fr       */
+/*   Updated: 2022/05/25 19:13:31 by fdaumas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "minilibx/mlx.h"
+# include "mlx/mlx.h"
 # include "src/get_next_line/get_next_line.h"
 # include <stddef.h>
 # include <unistd.h>
@@ -53,6 +53,7 @@ typedef struct s_map
 # define ERR_WIN "Error\nBad create of window\n"
 
 // verif fileformat
+int	ft_fileformat(int argn, char **input);
 char	*ft_strnstr(const char *str, const char *str2, size_t size);
 size_t	ft_strlen(const char *str);
 

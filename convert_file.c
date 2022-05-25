@@ -6,7 +6,7 @@
 /*   By: fdaumas <fdaumas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 21:07:35 by fdaumas           #+#    #+#             */
-/*   Updated: 2022/04/06 21:11:50 by fdaumas          ###   ########.fr       */
+/*   Updated: 2022/05/25 18:49:22 by fdaumas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_file_to_string(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Error\nError ");
+		perror("Error ");
 		return (0);
 	}
 	string = get_next_line(fd);

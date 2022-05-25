@@ -6,11 +6,10 @@
 /*   By: fdaumas <fdaumas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:34:21 by fdaumas           #+#    #+#             */
-/*   Updated: 2022/05/24 17:35:04 by fdaumas          ###   ########.fr       */
+/*   Updated: 2022/05/25 19:20:51 by fdaumas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx/mlx.h"
 #include "so_long.h"
 #include "src/get_next_line/get_next_line.h"
 #include <stddef.h>
@@ -76,14 +75,16 @@ void ft_bzero(void *ptr, unsigned int n)
 
 int	main(int argc, char *argv[])
 {
-	t_map	map;	
-
-	/* TODO */
+	t_map	map;
+	
+	if (ft_fileformat(argc, argv) == 0)
+		return (0);
 	ft_bzero(&map, sizeof(map));
-
 	if (init_game(argc, &map) == 1)
 		return (0);
 	map.map = ft_file_to_map(argv[1], '\n');
+	if (!map.map)
+		return (0);
 	map.initial_map = ft_file_to_map(argv[1], '\n');
 	if (ft_map_validation(&map) < 1)
 		free_map_invalid(&map);
@@ -92,7 +93,6 @@ int	main(int argc, char *argv[])
 	if (!map.win)
 	{
 		free_map(&map);
-		free(map.mlx);
 		write(1, ERR_WIN, ft_strlen(ERR_WIN));
 		return (0);
 	}
