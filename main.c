@@ -6,7 +6,7 @@
 /*   By: fdaumas <fdaumas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:34:21 by fdaumas           #+#    #+#             */
-/*   Updated: 2022/05/25 19:20:51 by fdaumas          ###   ########.fr       */
+/*   Updated: 2022/05/25 20:00:11 by fdaumas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,28 @@ int	init_game(int argc, t_map *map)
 	return (0);
 }
 
-void ft_bzero(void *ptr, unsigned int n)
+void	ft_bzero(void *ptr, unsigned int n)
 {
-	char	*p = ptr;
+	char	*p;
 
+	p = ptr;
 	while (n--)
 	{
 		*p++ = 0;
 	}
 }
 
+int	err_win(t_map *map)
+{
+	free_map(map);
+	write(1, ERR_WIN, ft_strlen(ERR_WIN));
+	return (0);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_map	map;
-	
+
 	if (ft_fileformat(argc, argv) == 0)
 		return (0);
 	ft_bzero(&map, sizeof(map));
@@ -88,14 +96,10 @@ int	main(int argc, char *argv[])
 	map.initial_map = ft_file_to_map(argv[1], '\n');
 	if (ft_map_validation(&map) < 1)
 		free_map_invalid(&map);
-	map.win = mlx_new_window(map.mlx, (
-				map.length * WIDTH), (map.height * HEIGHT), "so_long");
+	map.win = mlx_new_window(map.mlx,
+			(map.length * 64), (map.height * 64), "so_long");
 	if (!map.win)
-	{
-		free_map(&map);
-		write(1, ERR_WIN, ft_strlen(ERR_WIN));
-		return (0);
-	}
+		err_win(&map);
 	print_map(&map);
 	mlx_key_hook(map.win, travel, &map);
 	mlx_hook(map.win, 17, 0, (int (*)())free_kill, &map);

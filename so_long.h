@@ -6,7 +6,7 @@
 /*   By: fdaumas <fdaumas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 16:30:37 by fdaumas           #+#    #+#             */
-/*   Updated: 2022/05/25 19:13:31 by fdaumas          ###   ########.fr       */
+/*   Updated: 2022/05/25 20:00:38 by fdaumas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_map
 # define ERR_WIN "Error\nBad create of window\n"
 
 // verif fileformat
-int	ft_fileformat(int argn, char **input);
+int		ft_fileformat(int argn, char **input);
 char	*ft_strnstr(const char *str, const char *str2, size_t size);
 size_t	ft_strlen(const char *str);
 
@@ -69,6 +69,7 @@ int		ft_map_validation(t_map *map);
 void	ft_putnbr(int nb);
 
 // free
+int		err_win(t_map *map);
 void	free_img(t_map *map);
 void	free_map_invalid(t_map *map);
 void	free_map(t_map *map);
